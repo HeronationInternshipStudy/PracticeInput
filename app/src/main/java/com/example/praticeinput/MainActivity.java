@@ -26,13 +26,15 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void increment(View view){
-        int quantity=3;
-        display(quantity);
+        numberOfCoffee+=1;
+        display(numberOfCoffee);
+        displayPrice(numberOfCoffee*5);
     }
 
     public void decrement(View view){
-        int quantity=1;
-        display(quantity);
+        numberOfCoffee-=1;
+        display(numberOfCoffee);
+        displayPrice(numberOfCoffee*5);
     }
 
     /**
