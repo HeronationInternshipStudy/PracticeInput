@@ -19,33 +19,34 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:orientation="horizontal">
-    <Button
-        android:layout_width="48dp"
-        android:layout_height="48dp"
-        android:text="+"
-        android:textAllCaps="true"
-        android:textSize="16sp"
-        android:onClick="increment"
-        />
-
-
+        <Button
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:text="-"
+            android:textAllCaps="true"
+            android:textSize="16sp"
+            android:onClick="decrement"
+            />
     <TextView
         android:id="@+id/quantity_text_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
         android:text="2"
         android:textSize="16sp"
         android:textColor="#000000"
         />
+        <Button
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:text="+"
+            android:textAllCaps="true"
+            android:textSize="16sp"
+            android:onClick="increment"
+            />
 
-    <Button
-        android:layout_width="48dp"
-        android:layout_height="48dp"
-        android:text="-"
-        android:textAllCaps="true"
-        android:textSize="16sp"
-        android:onClick="decrement"
-        />
+
     </LinearLayout>
     <TextView
         android:layout_width="wrap_content"
