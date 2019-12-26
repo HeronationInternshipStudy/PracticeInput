@@ -8,4 +8,10 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <style name="CustomText">
+        <item name="android:textSize">20sp</item>
+        <item name="android:textColor">#FF9999</item>
+        <item name="android:textStyle">italic</item>
+    </style>
+
 </resources>
