@@ -2,11 +2,14 @@ package com.example.praticeinput;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.text.NumberFormat;
 
@@ -44,26 +47,47 @@ public class MainActivity extends AppCompatActivity {
            priceMessage+="\nTotal: " + NumberFormat.getCurrencyInstance().format(price);
            priceMessage+="\nThank you!";
 
-        displayMessage(priceMessage);
+           displayMessage(priceMessage);
+
+           Intent intent=new Intent(Intent.ACTION_SENDTO);
+           intent.setData(Uri.parse("mailto:")); //only email apps should handle this
+           intent.putExtra(Intent.EXTRA_SUBJECT,"Just Java order for "+user_name);
+           intent.putExtra(Intent.EXTRA_TEXT,priceMessage);//이메일의 바디부분을 추가해줌
+           if(intent.resolveActivity(getPackageManager())!=null){
+               startActivity(intent);
+           }
+
+
+
     }
 
     private int calculatePrice(int quantity,int pricePerCup) {
-        int price = quantity * pricePerCup;
+        int price = pricePerCup;
         if(cb_whipped_cream.isChecked()){
-            price+=2;
+            price+=1;
         }
         if(cb_chocolate.isChecked()){
-            price+=3;
+            price+=2;
         }
+
+        price=price*quantity;
         return price;
     }
 
     public void increment(View view){
+        if (numberOfCoffee == 100) {
+            Toast.makeText(this, "You cannot have more than 100 coffees", Toast.LENGTH_SHORT).show();
+            return;
+        }
         numberOfCoffee+=1;
         displayQuantity(numberOfCoffee);
     }
 
     public void decrement(View view){
+        if(numberOfCoffee==1){
+            Toast.makeText(this,"You cannot have less than 1 coffee",Toast.LENGTH_SHORT).show();
+             return;
+        }
         numberOfCoffee-=1;
         displayQuantity(numberOfCoffee);
     }
