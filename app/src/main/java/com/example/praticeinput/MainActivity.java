@@ -4,6 +4,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 import android.view.View;
+import android.widget.CheckBox;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import java.text.NumberFormat;
@@ -12,19 +14,36 @@ public class MainActivity extends AppCompatActivity {
 
     int numberOfCoffee=2;
     int price=0;
+    String user_name="";
+    CheckBox cb_whipped_cream;
+    CheckBox cb_chocolate;
+    EditText et_name;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        cb_whipped_cream=(CheckBox)findViewById(R.id.cb_whipped_cream);
+        cb_chocolate=(CheckBox)findViewById(R.id.cb_chocolate);
+        et_name=(EditText)findViewById(R.id.et_name);
     }
 
     public void submitOrder(View view) {
         price=calculatePrice(numberOfCoffee,5);
+        user_name=et_name.getText().toString();
         createOrderSummary();
     }
 
     public void createOrderSummary(){
-        String priceMessage="Name: Mina\n"+"Quantity:"+numberOfCoffee+"\nTotal: "+ NumberFormat.getCurrencyInstance().format(price)+"\nThank you!";
+        String priceMessage="";
+        Boolean addWhippedCream=cb_whipped_cream.isChecked();
+        Boolean addChocolate=cb_chocolate.isChecked();
+           priceMessage = "Name: "+user_name;
+           priceMessage+="\nAdd whipped cream? "+addWhippedCream;
+            priceMessage+="\nAdd chocolate? "+addChocolate;
+           priceMessage+="\nQuantity:" + numberOfCoffee;
+           priceMessage+="\nTotal: " + NumberFormat.getCurrencyInstance().format(price);
+           priceMessage+="\nThank you!";
+
         displayMessage(priceMessage);
     }
 
