@@ -39,7 +39,7 @@ public class MainActivity extends AppCompatActivity {
         Boolean addChocolate=cb_chocolate.isChecked();
            priceMessage = "Name: "+user_name;
            priceMessage+="\nAdd whipped cream? "+addWhippedCream;
-            priceMessage+="\nAdd chocolate? "+addChocolate;
+           priceMessage+="\nAdd chocolate? "+addChocolate;
            priceMessage+="\nQuantity:" + numberOfCoffee;
            priceMessage+="\nTotal: " + NumberFormat.getCurrencyInstance().format(price);
            priceMessage+="\nThank you!";
@@ -49,19 +49,23 @@ public class MainActivity extends AppCompatActivity {
 
     private int calculatePrice(int quantity,int pricePerCup) {
         int price = quantity * pricePerCup;
+        if(cb_whipped_cream.isChecked()){
+            price+=2;
+        }
+        if(cb_chocolate.isChecked()){
+            price+=3;
+        }
         return price;
     }
 
     public void increment(View view){
         numberOfCoffee+=1;
         displayQuantity(numberOfCoffee);
-        displayPrice(numberOfCoffee*5);
     }
 
     public void decrement(View view){
         numberOfCoffee-=1;
         displayQuantity(numberOfCoffee);
-        displayPrice(numberOfCoffee*5);
     }
 
     /**
